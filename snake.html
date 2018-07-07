@@ -147,7 +147,7 @@
 
       if (newHead.equal(apple.position)) {
         score++;
-        apple.move();
+        apple.move(this.segments);
       } else {
         this.segments.pop();
       }
@@ -199,10 +199,17 @@
     };
 
     // Перемещаем яблоко в случайную позицию
-    Apple.prototype.move = function () {
+    Apple.prototype.move = function (occupiedBlocks) {
       var randomCol = Math.floor(Math.random() * (widthInBlocks - 2)) + 1;
       var randomRow = Math.floor(Math.random() * (heightInBlocks - 2)) + 1;
       this.position = new Block(randomCol, randomRow);
+
+      // Проверяем не появилось ли яблоко в блоке, содержащем ячейку змеи
+      for (var i = 0; i < occupiedBlocks.length; i++) {
+        if (this.position.equal(occupiedBlocks[i])) {
+          this.move(occupiedBlocks); //Вызов метода move опять
+        }
+      }
     };
 
     // Создаем объект-змейку и объект-яблоко
