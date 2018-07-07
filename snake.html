@@ -37,6 +37,15 @@
       ctx.textBaseline = "top";
       ctx.fillText("Счет: " + score, blockSize, blockSize);
     };
+
+    var gameOver = function () {
+      clearInterval(intervalId);
+      ctx.font = "60px Courier"
+      ctx.fillStyle = "Black";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText("Конец игры", width / 2, height / 2);
+    };
   </script>
 </body>
 </html>
