@@ -107,8 +107,17 @@
 
     // Рисуем квадратик для каждого сегмента тела змейки
     Snake.prototype.draw = function () {
-      for (var i = 0; i < this.segments.length; i++) {
-        this.segments[i].drawSquare("Blue");
+      this.segments[0].drawSquare("Green")
+      var isEvenSegment = false;
+
+      for (var i = 1; i < this.segments.length; i++) {
+        if (isEvenSegment) {
+          this.segments[i].drawSquare("OliveDrab");
+        } else {
+          this.segments[i].drawSquare("YellowGreen");
+        }
+
+        isEvenSegment = !isEvenSegment; //Следующий сегмент будет нечетным
       }
     };
 
